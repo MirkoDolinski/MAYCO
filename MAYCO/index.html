@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpresaGalletitas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#usodelapagina">Uso de la Página</a></li>
+                <li><a href="#estadodelproducto">Estado del Producto</a></li>
+                <li><a href="#estadodelcamion">Estado del Camión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="usodelapagina">
+            <h2>Uso de la Página</h2>
+            <p><strong>Estado del Producto:</strong> Registre el estado actual del producto en el sector correspondiente para poder identificar problemas y deficiencias.</p>
+            <p><strong>Estado del Camión:</strong> Informe sobre la llegada del camión al punto de entrega y asigne un código único a cada punto de venta antes de salir, para prevenir robos o entregas equivocadas.</p>
+        </section>
+
+        <section id="estadodelproducto">
+            <h2>Estado del Producto</h2>
+            <div>
+                <p>Por favor, indique el estado del producto en el área correspondiente para facilitar el seguimiento de cualquier problema.</p>
+                <form id="tracking-form" aria-labelledby="estadodelproducto">
+                    <label for="sector">Sector:</label>
+                    <select id="sector" required>
+                        <option value="zona de elaboración">Zona de Elaboración</option>
+                        <option value="preparación del envío">Preparación del Envío</option>
+                        <option value="entrega y recepción">Entrega y Recepción</option>
+                    </select>
+
+                    <label for="estado">Estado del Paquete:</label>
+                    <input type="text" id="estado" required>
+                    <button type="button" onclick="registrarEstado()">Registrar Estado</button>
+                </form>
+                <div id="tracking-status"></div>
+            </div>
+
+            <h2>Estado del Camión</h2>
+            <div>
+                <p>Seleccione el punto de venta y, a continuación, indique la ubicación o un código de confirmación.</p>
+                <form id="location-form" aria-labelledby="estadodelcamion">
+                    <label for="punto">Punto de Venta:</label>
+                    <select id="punto" required>
+                        <option value="Rosario">Rosario</option>
+                        <option value="San Nicolás de los Arroyos">San Nicolás de los Arroyos</option>
+                        <option value="Ramallo">Ramallo</option>
+                        <option value="San Pedro">San Pedro</option>
+                        <option value="Campana">Campana</option>
+                    </select>
+
+                    <label for="estado-punto">Estado en el Punto:</label>
+                    <select id="estado-punto" onchange="toggleCodigo()" required>
+                        <option value="ubicacion">Ubicación Actual</option>
+                        <option value="codigo">Establecer Código para Punto de Venta</option>
+                    </select>
+
+                    <div id="codigo-section" style="display: none;">
+                        <label for="codigo">Código de Verificación:</label>
+                        <input type="text" id="codigo" placeholder="Ingrese código único" required>
+                    </div>
+
+                    <button type="button" onclick="establecerEstadoPunto()">Establecer Estado</button>
+                </form>
+                <div id="location-status"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
